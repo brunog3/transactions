@@ -14,7 +14,10 @@ import lombok.*;
 @Table(name = "operations_types")
 public class OperationType {
 
-  @Id @GeneratedValue private UUID id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
   private String description;
 
   @Enumerated(EnumType.STRING)

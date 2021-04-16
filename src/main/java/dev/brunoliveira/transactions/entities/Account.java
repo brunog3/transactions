@@ -1,11 +1,8 @@
 package dev.brunoliveira.transactions.entities;
 
-import java.util.UUID;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import lombok.*;
+
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -16,6 +13,9 @@ import lombok.*;
 @Table(name = "accounts")
 public class Account {
 
-  @Id @GeneratedValue private UUID id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
   private String documentNumber;
 }

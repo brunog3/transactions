@@ -1,10 +1,10 @@
 package dev.brunoliveira.transactions.entities;
 
+import lombok.*;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
-import javax.persistence.*;
-import lombok.*;
 
 @Getter
 @Setter
@@ -15,7 +15,9 @@ import lombok.*;
 @Table(name = "transactions")
 public class Transaction {
 
-  @Id @GeneratedValue private UUID id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
   @JoinColumn(name = "account_id")
   @ManyToOne(fetch = FetchType.LAZY)
