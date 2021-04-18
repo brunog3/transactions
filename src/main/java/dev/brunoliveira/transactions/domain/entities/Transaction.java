@@ -1,10 +1,9 @@
-package dev.brunoliveira.transactions.entities;
+package dev.brunoliveira.transactions.domain.entities;
 
-import lombok.*;
-
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import javax.persistence.*;
+import lombok.*;
 
 @Getter
 @Setter
@@ -28,8 +27,11 @@ public class Transaction {
   private OperationType operationType;
 
   private BigDecimal amount;
-
   private LocalDateTime createdAt;
+
+  public BigDecimal getAbsoluteAmount() {
+    return amount.abs();
+  }
 
   @PrePersist
   public void onPersist() {

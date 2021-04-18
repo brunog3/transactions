@@ -1,4 +1,4 @@
-package dev.brunoliveira.transactions.infra;
+package dev.brunoliveira.transactions;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ public class SpringFoxConfiguration {
         .select()
         .apis(RequestHandlerSelectors.any())
         .paths(PathSelectors.any())
-        .build();
+        .build()
+        .pathMapping("/");
   }
-
 }

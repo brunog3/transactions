@@ -1,11 +1,10 @@
 package dev.brunoliveira.transactions.api.transaction;
 
-import dev.brunoliveira.transactions.entities.Account;
-import dev.brunoliveira.transactions.entities.OperationType;
-import dev.brunoliveira.transactions.entities.Transaction;
-import lombok.*;
-
+import dev.brunoliveira.transactions.domain.entities.Account;
+import dev.brunoliveira.transactions.domain.entities.OperationType;
+import dev.brunoliveira.transactions.domain.entities.Transaction;
 import java.math.BigDecimal;
+import lombok.*;
 
 @Getter
 @Setter

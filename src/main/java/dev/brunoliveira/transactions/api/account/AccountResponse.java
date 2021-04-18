@@ -1,6 +1,6 @@
 package dev.brunoliveira.transactions.api.account;
 
-import dev.brunoliveira.transactions.entities.Account;
+import dev.brunoliveira.transactions.domain.entities.Account;
 import lombok.*;
 
 @Getter
@@ -11,7 +11,7 @@ import lombok.*;
 public class AccountResponse {
 
   private Long id;
-  private String documentNumber;
+  private Long documentNumber;
 
   public static AccountResponse of(Account account) {
     return AccountResponse.builder()

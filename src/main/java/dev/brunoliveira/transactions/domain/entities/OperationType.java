@@ -1,7 +1,6 @@
-package dev.brunoliveira.transactions.entities;
+package dev.brunoliveira.transactions.domain.entities;
 
-import dev.brunoliveira.transactions.enums.Operation;
-import java.util.UUID;
+import dev.brunoliveira.transactions.domain.enums.Operation;
 import javax.persistence.*;
 import lombok.*;
 

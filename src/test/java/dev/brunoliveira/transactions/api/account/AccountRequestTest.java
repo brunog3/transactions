@@ -1,12 +1,12 @@
 package dev.brunoliveira.transactions.api.account;
 
-import org.junit.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.Test;
 
 public class AccountRequestTest {
 
-  private static final String DOCUMENT_NUMBER = "123789";
+  private static final Long DOCUMENT_NUMBER = 123789l;
 
   @Test
   public void shouldProducesAccountEntityFromAccountResponse() {

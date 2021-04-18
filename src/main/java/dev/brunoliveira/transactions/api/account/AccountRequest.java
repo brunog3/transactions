@@ -1,6 +1,6 @@
 package dev.brunoliveira.transactions.api.account;
 
-import dev.brunoliveira.transactions.entities.Account;
+import dev.brunoliveira.transactions.domain.entities.Account;
 import lombok.*;
 
 @Getter
@@ -10,10 +10,9 @@ import lombok.*;
 @AllArgsConstructor
 public class AccountRequest {
 
-  String documentNumber;
+  Long documentNumber;
 
   public Account toEntity() {
     return Account.builder().documentNumber(documentNumber).build();
   }
-
 }

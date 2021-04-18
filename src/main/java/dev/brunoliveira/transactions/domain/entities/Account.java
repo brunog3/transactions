@@ -1,8 +1,7 @@
-package dev.brunoliveira.transactions.entities;
-
-import lombok.*;
+package dev.brunoliveira.transactions.domain.entities;
 
 import javax.persistence.*;
+import lombok.*;
 
 @Getter
 @Setter
@@ -17,5 +16,5 @@ public class Account {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private String documentNumber;
+  private Long documentNumber;
 }

@@ -1,10 +1,9 @@
 package dev.brunoliveira.transactions.api.transaction;
 
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.Test;
 
 public class TransactionRequestTest {
   private static final Long ACCOUNT_ID = 4l;
@@ -14,13 +13,13 @@ public class TransactionRequestTest {
 
   @Test
   public void shouldProducesTransactionEntityFromTransactionRequest() {
-      var entity = REQUEST.toEntity();
+    var entity = REQUEST.toEntity();
 
-      assertThat(entity).isNotNull();
-      assertThat(entity.getId()).isNull();
-      assertThat(entity.getAccount().getId()).isEqualTo(ACCOUNT_ID);
-      assertThat(entity.getOperationType().getId()).isEqualTo(OPERATION_TYPE_ID);
-      assertThat(entity.getAmount()).isEqualTo(AMOUNT);
+    assertThat(entity).isNotNull();
+    assertThat(entity.getId()).isNull();
+    assertThat(entity.getAccount().getId()).isEqualTo(ACCOUNT_ID);
+    assertThat(entity.getOperationType().getId()).isEqualTo(OPERATION_TYPE_ID);
+    assertThat(entity.getAmount()).isEqualTo(AMOUNT);
   }
 
   private static final TransactionRequest createRequest() {
