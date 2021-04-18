@@ -16,5 +16,5 @@ public class Account {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private Long documentNumber;
+  private String documentNumber;
 }

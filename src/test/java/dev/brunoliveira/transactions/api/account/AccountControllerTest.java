@@ -32,7 +32,7 @@ import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 public class AccountControllerTest {
   private static final String BASE_PATH = "/accounts";
   private static final Long ACCOUNT_ID = 22l;
-  private static final Long DOCUMENT_NUMBER = 7569234l;
+  private static final String DOCUMENT_NUMBER = "7569234";
   private static final Account ACCOUNT = createAccount();
 
   @Value("classpath:api/account/account-response.json")

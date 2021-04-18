@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 public class AccountRequest {
 
-  Long documentNumber;
+  String documentNumber;
 
   public Account toEntity() {
     return Account.builder().documentNumber(documentNumber).build();

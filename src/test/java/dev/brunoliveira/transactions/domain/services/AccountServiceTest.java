@@ -19,8 +19,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class AccountServiceTest {
 
   private static final Long ACCOUNT_ID = 1l;
-  private static final Long DOCUMENT_NUMBER = 654987l;
-  private static final Long INVALID_DOCUMENT_NUMBER = 0l;
+  private static final String DOCUMENT_NUMBER = "12345678900";
+  private static final String INVALID_DOCUMENT_NUMBER = "";
   private static final Account ACCOUNT = createAccount();
 
   @Mock private AccountRepository repository;

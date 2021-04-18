@@ -11,7 +11,7 @@ import lombok.*;
 public class AccountResponse {
 
   private Long id;
-  private Long documentNumber;
+  private String documentNumber;
 
   public static AccountResponse of(Account account) {
     return AccountResponse.builder()

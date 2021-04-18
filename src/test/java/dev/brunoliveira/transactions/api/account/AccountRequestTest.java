@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class AccountRequestTest {
 
-  private static final Long DOCUMENT_NUMBER = 123789l;
+  private static final String DOCUMENT_NUMBER = "123789";
 
   @Test
   public void shouldProducesAccountEntityFromAccountResponse() {

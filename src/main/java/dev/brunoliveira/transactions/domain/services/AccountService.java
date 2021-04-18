@@ -25,7 +25,7 @@ public class AccountService {
   }
 
   private void validate(Account account) {
-    if (isNull(account.getDocumentNumber()) || account.getDocumentNumber() < 1) {
+    if (isNull(account.getDocumentNumber()) || account.getDocumentNumber().isBlank()) {
       throw new InvalidDocumentNumberException();
     }
   }

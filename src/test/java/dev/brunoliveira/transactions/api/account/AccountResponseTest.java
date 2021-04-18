@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class AccountResponseTest {
   private static final Long ACCOUNT_ID = 1l;
-  private static final Long DOCUMENT_NUMBER = 348234234l;
+  private static final String DOCUMENT_NUMBER = "348234234";
   private static final Account ACCOUNT = createAccount();
 
   @Test
