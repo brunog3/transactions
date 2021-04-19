@@ -14,11 +14,12 @@ Este é um projeto baseado em [Spring Boot](https://spring.io/projects/spring-bo
 * [Lombok](https://projectlombok.org/)
 * [Flyway](https://flywaydb.org/)
 * [Swagger](https://swagger.io/)
+* [JUnit](https://junit.org/)
 
 ### Endpoints
 
 Os endpoints também podem ser acessados no Swagger a partir do endereço:  
-> http://localhost:8080/swagger/index.html
+> http://localhost:8080/swagger-ui/index.html
 
 ##### Criação de uma conta   
 ``` 
@@ -82,7 +83,7 @@ Um conjunto de comandos foi definido utilizando o utilitário [Make](https://www
 # gerar imagem docker
 > make docker-build
 
-# executar aplicacao utilizando docker
+# executar aplicacao utilizando docker e banco de dados
 > make docker-run
 ```
 

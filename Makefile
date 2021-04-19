@@ -1,4 +1,4 @@
-DATABASE_URL=jdbc:postgresql://localhost:5432/postgres
+DATABASE_URL=jdbc:postgresql://192.168.1.64:5432/postgres
 DATABASE_USER=postgres
 DATABASE_PASSWORD=postgres
 
@@ -22,11 +22,7 @@ docker-build:
 	docker build -t brunoliveira/transactions .
 
 docker-run:
-	docker run -p 8080:8080 \
-		-e DATASOURCE_URL=${DATABASE_URL} \
-		-e DATASOURCE_USERNAME=${DATABASE_USER} \
-		-e DATASOURCE_PASSWORD=${DATABASE_PASSWORD} \
-		brunoliveira/transactions
+	docker-compose --file environment/docker-compose.yml up
 
 start-database:
 	docker-compose --file environment/docker-compose.db.yml up -d

@@ -1,10 +1,23 @@
 version: '3'
 
 services:
+  postgres-db:
+    image: postgres
+    container_name: postgres-db
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - 5432:5432
+    # volumes:
+    #   - c:/development/database/postgres/data:/var/lib/postgresql/data
+
   transactions:
     image: brunoliveira/transactions
+    container_name: transactions
+    depends_on: 
+      - postgres-db
     environment:
-      DATASOURCE_URL: jdbc:postgresql://localhost:5432/postgres
+      DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/postgres
       DATASOURCE_USERNAME: postgres
       DATASOURCE_PASSWORD: postgres
     ports:

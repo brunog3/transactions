@@ -1,12 +1,16 @@
 package dev.brunoliveira.transactions.api.account;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.brunoliveira.transactions.domain.entities.Account;
 import dev.brunoliveira.transactions.domain.exception.AccountNotFoundException;
 import dev.brunoliveira.transactions.domain.exception.InvalidDocumentNumberException;
@@ -25,18 +29,20 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(AccountController.class)
 public class AccountControllerTest {
   private static final String BASE_PATH = "/accounts";
   private static final Long ACCOUNT_ID = 22l;
-  private static final String DOCUMENT_NUMBER = "7569234";
+  private static final String DOCUMENT_NUMBER = "12345678900";
   private static final Account ACCOUNT = createAccount();
 
+  @Value("classpath:api/account/account-request.json")
+  private Resource accountRequestResource;
+
   @Value("classpath:api/account/account-response.json")
-  private Resource accountResource;
+  private Resource accountResponseResource;
 
   @Autowired private MockMvc mockMvc;
   @MockBean private AccountService service;
@@ -47,14 +53,14 @@ public class AccountControllerTest {
   public void shouldReturnAccountById() {
     when(service.findById(ACCOUNT_ID)).thenReturn(ACCOUNT);
 
-    var result =
-        mockMvc
-            .perform(get(BASE_PATH + "/{accountId}", ACCOUNT_ID))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(
-                content().json(new String(Files.readAllBytes(accountResource.getFile().toPath()))))
-            .andReturn();
+    mockMvc
+        .perform(get(BASE_PATH + "/{accountId}", ACCOUNT_ID))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(
+            content()
+                .json(new String(Files.readAllBytes(accountResponseResource.getFile().toPath()))))
+        .andReturn();
 
     verify(service).findById(ACCOUNT_ID);
   }
@@ -72,13 +78,10 @@ public class AccountControllerTest {
   @Test
   @SneakyThrows
   public void shouldCreateNewAccount() {
-    var request = AccountRequest.builder().documentNumber(DOCUMENT_NUMBER).build();
+    var requestJson = new String(Files.readAllBytes(accountRequestResource.getFile().toPath()));
 
     mockMvc
-        .perform(
-            post(BASE_PATH)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(getMapper().writeValueAsString(request)))
+        .perform(post(BASE_PATH).contentType(MediaType.APPLICATION_JSON).content(requestJson))
         .andExpect(status().isCreated());
 
     verify(service).save(accountArgumentCaptor.capture());
