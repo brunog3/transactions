@@ -17,10 +17,10 @@ Este é um projeto baseado em [Spring Boot](https://spring.io/projects/spring-bo
 
 ### Endpoints
 
-Os endpoints também podem ser acessados em  
+Os endpoints também podem ser acessados no Swagger a partir do endereço:  
 > http://localhost:8080/swagger/index.html
 
-* Criação de uma conta   
+##### Criação de uma conta   
 ``` 
 POST /accounts
 
@@ -29,21 +29,21 @@ POST /accounts
   "document_number": "12345678900" 
 } 
 ```
-* Consulta de informações de uma conta
+##### Consulta de informações de uma conta
 ```
 GET /accounts/:accountId 
 
-# response Body: 
+# response body: 
 { 
   "account_id": 1, 
   "document_number": "12345678900" 
 } 
 ```
-* Criação de uma transação
+##### Criação de uma transação
 ```
 POST /transactions
  
-# request Body: 
+# request body: 
 { 
   "account_id": 1, 
   "operation_type_id": 4, 
