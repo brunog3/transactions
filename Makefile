@@ -1,4 +1,4 @@
-DATABASE_URL=jdbc:postgresql://192.168.1.64:5432/postgres
+DATABASE_URL=jdbc:postgresql://localhost:5432/postgres
 DATABASE_USER=postgres
 DATABASE_PASSWORD=postgres
 
