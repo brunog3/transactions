@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  transactions:
+    image: brunoliveira/transactions
+    environment:
+      DATASOURCE_URL: jdbc:postgresql://localhost:5432/postgres
+      DATASOURCE_USERNAME: postgres
+      DATASOURCE_PASSWORD: postgres
+    ports:
+      - 8080:8080

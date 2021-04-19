@@ -1,5 +1,6 @@
-DATABASE_URL=jdbc:postgresql://192.168.1.64:5432/transactions
-DATABASE_USER=transactions
+DATABASE_URL=jdbc:postgresql://localhost:5432/postgres
+DATABASE_USER=postgres
+DATABASE_PASSWORD=postgres
 
 build:
 	mvn clean install
@@ -14,17 +15,21 @@ run:
 .PHONY: run
 
 local-migration:
-	@read -p "Enter with database password:" password; \
-	mvn -Dflyway.url=${DATABASE_URL} -Dflyway.user=${DATABASE_USER} -Dflyway.password=$$password flyway:migrate
-.PHONY: local-migration
-
-initialize-flyway:
-	@read -p "Enter with database password:" password; \
-	mvn -Dflyway.url=${DATABASE_URL} -Dflyway.user=${DATABASE_USER} -Dflyway.password=$$password flyway:baseline
+	mvn -Dflyway.url=${DATABASE_URL} -Dflyway.user=${DATABASE_USER} -Dflyway.password=${DATABASE_PASSWORD} flyway:migrate
 .PHONY: local-migration
 
 docker-build:
 	docker build -t brunoliveira/transactions .
 
 docker-run:
-	docker run -p 8080:8080 brunoliveira/transactions
+	docker run -p 8080:8080 \
+		-e DATASOURCE_URL=${DATABASE_URL} \
+		-e DATASOURCE_USERNAME=${DATABASE_USER} \
+		-e DATASOURCE_PASSWORD=${DATABASE_PASSWORD} \
+		brunoliveira/transactions
+
+start-database:
+	docker-compose --file environment/docker-compose.db.yml up -d
+
+stop-database:
+	docker-compose --file environment/docker-compose.db.yml down
