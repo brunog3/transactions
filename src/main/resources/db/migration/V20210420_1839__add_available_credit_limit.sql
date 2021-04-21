@@ -1,0 +1,1 @@
+alter table accounts add available_credit_limit numeric not null;

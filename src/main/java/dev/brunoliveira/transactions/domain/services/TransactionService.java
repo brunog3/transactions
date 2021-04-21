@@ -24,7 +24,12 @@ public class TransactionService {
     validate(transaction);
     loadDependencies(transaction);
     defineAmountByOperation(transaction);
+    validateAccountCreditLimit(transaction);
     repository.save(transaction);
+  }
+
+  private void validateAccountCreditLimit(Transaction transaction) {
+    accountService.updateCreditLimit(transaction.getAccount(), transaction.getAmount());
   }
 
   private void validate(Transaction transaction) {

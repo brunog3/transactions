@@ -15,6 +15,7 @@ import dev.brunoliveira.transactions.domain.entities.Account;
 import dev.brunoliveira.transactions.domain.exception.AccountNotFoundException;
 import dev.brunoliveira.transactions.domain.exception.InvalidDocumentNumberException;
 import dev.brunoliveira.transactions.domain.services.AccountService;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import lombok.SneakyThrows;
 import org.junit.Test;
@@ -36,6 +37,7 @@ public class AccountControllerTest {
   private static final String BASE_PATH = "/accounts";
   private static final Long ACCOUNT_ID = 22l;
   private static final String DOCUMENT_NUMBER = "12345678900";
+  private static final BigDecimal AVAILABLE_ACCOUNT_LIMIT = BigDecimal.valueOf(500);
   private static final Account ACCOUNT = createAccount();
 
   @Value("classpath:api/account/account-request.json")
@@ -104,7 +106,11 @@ public class AccountControllerTest {
   }
 
   private static Account createAccount() {
-    return Account.builder().id(ACCOUNT_ID).documentNumber(DOCUMENT_NUMBER).build();
+    return Account.builder()
+        .id(ACCOUNT_ID)
+        .documentNumber(DOCUMENT_NUMBER)
+        .availableCreditLimit(AVAILABLE_ACCOUNT_LIMIT)
+        .build();
   }
 
   private ObjectMapper getMapper() {

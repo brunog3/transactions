@@ -15,7 +15,7 @@ run:
 .PHONY: run
 
 local-migration:
-	mvn -Dflyway.url=${DATABASE_URL} -Dflyway.user=${DATABASE_USER} -Dflyway.password=${DATABASE_PASSWORD} flyway:migrate
+	mvn -o -Dflyway.url=${DATABASE_URL} -Dflyway.user=${DATABASE_USER} -Dflyway.password=${DATABASE_PASSWORD} flyway:migrate
 .PHONY: local-migration
 
 docker-build:

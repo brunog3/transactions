@@ -1,5 +1,6 @@
 package dev.brunoliveira.transactions.domain.entities;
 
+import java.math.BigDecimal;
 import javax.persistence.*;
 import lombok.*;
 
@@ -17,4 +18,6 @@ public class Account {
   private Long id;
 
   private String documentNumber;
+
+  private BigDecimal availableCreditLimit;
 }
